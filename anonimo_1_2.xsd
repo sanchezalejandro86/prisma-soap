@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by oscarlin (Wachovia Bank)--><xs:schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaheader/2_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://ws.bancogalicia.com.ar/webservices/globales/bgbaheader/2_0_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="codigoZonaHoraria">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="alfanumerico2">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2"/>
+      <xs:minLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="alfanumerico3">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="3"/>
+      <xs:minLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="alfanumerico32">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="32"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="numeric10">
+    <xs:restriction base="xs:unsignedLong">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="9999999999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="alfanumericoLE35">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="idMensaje">
+    <xs:simpleContent>
+      <xs:extension base="alfanumerico32">
+        <xs:attribute name="idEsquema" type="alfanumerico3" use="optional" default="UUI">
+          <xs:annotation>
+            <xs:documentation>Identificador del generador de numeración utilizado para obtener el identificador. Por default “UUI”</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name="IdMensaje" type="idMensaje"/>
+  <xs:element name="ModuloAplicativo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdGalicia" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Identificador del módulo aplicativo en CMdb</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="IdConsumidor" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Identificador adicional utilizado en el contexto de la aplicación consumidora</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="IdProveedor" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Identificador interno del consumidor en el contexto de la aplicación proveedora</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IdConsumidorInterno" type="xs:string"/>
+  <xs:element name="Operador">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="idEsquema" type="xs:string" use="optional" default="LEGAJO">
+            <xs:annotation>
+              <xs:documentation>Identificador del sistema de identificación del operador. Por default: “LEGAJO”</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Supervision" type="xs:string"/>
+  <xs:simpleType name="ip">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="IdCliente">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="idEsquema" type="xs:string" use="optional" default="NV">
+            <xs:annotation>
+              <xs:documentation>Identificador de la base de clientes. Por default “NV”.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="equipo">
+    <xs:attribute name="ip" type="ip" use="required">
+      <xs:annotation>
+        <xs:documentation>Dirección IP de la máquina</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="nombre" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Nombre de la máquina</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="Equipo" type="equipo"/>
+  <xs:element name="Ip" type="ip"/>
+  <xs:element name="Terminal" type="xs:string"/>
+  <xs:complexType name="organizacionInterna">
+    <xs:attribute name="tipo" type="alfanumerico2" use="required">
+      <xs:annotation>
+        <xs:documentation>Tipo de Organización Interna</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="numeric10" use="required">
+      <xs:annotation>
+        <xs:documentation>Identificación de la organización interna dentro del tipo referido previamente</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Origen">
+    <xs:sequence>
+      <xs:element ref="ModuloAplicativo"/>
+      <xs:element name="Canal" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Identificador de la aplicación en CMDB, por la cual se invoca el servicio Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OrganizacionInterna" type="organizacionInterna" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Identificación de la organización interna dentro de la cual se inició el proceso de negocio. Ver la tabla corporativa NVA1209_ORG_INT</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Equipo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Identificación de la máquina que generó el mensaje Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Terminal" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Terminal donde se generó el mensaje Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FechaHoraCreacion" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Fecha y Hora de la creación del mensaje Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="IdCliente" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Identificador del cliente para el cual se generó el mensaje Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Operador" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Legajo del operador que generó el mensaje Original</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Supervision" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Información relevante a la autorización necesaria para ejecutar la operación</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Identificadores">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="IdMensaje" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Identificador del mensaje actual</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="IdMensajeAnterior" type="idMensaje" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Identificador del mensaje inmediato anterior al actual</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="IdOperacion" type="idMensaje">
+          <xs:annotation>
+            <xs:documentation>Identificador del mensaje Original en el proceso de negocio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BGBAHeader">
+    <xs:annotation>
+      <xs:documentation>Para mayor detalle de cómo utilizarse ir http://ccs.bancogalicia.com.ar/Referencia/AT05159</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Identificadores" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Agrupación de los identificadores requeridos para el tracing de los mensajes</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ModuloAplicativo"/>
+        <xs:element ref="Equipo" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Identificación de la máquina que generó el mensaje</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Origen" type="Origen">
+          <xs:annotation>
+            <xs:documentation>Datos propios del contexto de generación del proceso de negocio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

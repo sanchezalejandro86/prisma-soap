@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by L0602256 (EMBRACE)--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="http://ws.bancogalicia.com.ar/webservices/globales/bgbaheader/2_0_0" xmlns:b="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" xmlns:s="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" xmlns:ns1="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0">
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaheader/2_0_0" schemaLocation="anonimo_1_2.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="anonimo_1_2_3.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" schemaLocation="anonimo_1_2_3_4.xsd"/>
+  <element name="ObtenerResumenRequest">
+    <complexType>
+      <sequence>
+        <element ref="h:BGBAHeader"/>
+        <element name="Datos">
+          <complexType>
+            <sequence>
+              <element name="Banco" type="string"/>
+              <element name="NumeroCuenta" type="string"/>
+              <element name="Documento" type="b:documento" minOccurs="0"/>
+              <element name="NumeroTarjeta" type="string"/>
+              <element name="Sexo" type="b:codigov2" minOccurs="0"/>
+              <element name="DireccionIPCliente" type="string" minOccurs="0"/>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ObtenerResumen">
+    <complexType>
+      <sequence>
+        <element ref="tns:ObtenerResumenRequest"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

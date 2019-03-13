@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg)--><!--2009/03/03 BUG Se arregló el pattern de aceptacion de mail.--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" xmlns:s="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="anonimo_1_2_3.xsd"/>
+  <simpleType name="indicador">
+    <restriction base="s:boolean2"/>
+  </simpleType>
+  <complexType name="id">
+    <simpleContent>
+      <extension base="s:alfanumerico32">
+        <attribute name="idEsquema" type="s:token60" use="optional"/>
+        <attribute name="organizacionIdEsquema" type="s:token60" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="codigo">
+    <simpleContent>
+      <extension base="token">
+        <attribute name="idLista" type="s:token60" use="optional"/>
+        <attribute name="organizacionIdLista" type="s:token60" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="codigov2">
+    <simpleContent>
+      <extension base="string">
+        <attribute name="idLista" type="s:token60" use="optional"/>
+        <attribute name="organizacionIdLista" type="s:token60" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="periodo">
+    <sequence>
+      <element name="Desde" type="dateTime" minOccurs="0"/>
+      <element name="Hasta" type="dateTime" minOccurs="0"/>
+      <element name="Duracion" type="duration" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="porcentaje">
+    <restriction base="decimal">
+      <totalDigits value="16"/>
+      <fractionDigits value="6"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="emailURI_vacio">
+    <annotation>
+      <documentation>Permite vacio</documentation>
+    </annotation>
+    <restriction base="token">
+      <pattern value="[A-Za-z0-9!#&amp;$%'*+/=?^_`{|}~\-]+(\.[A-Za-z0-9!#&amp;$%'*+/=?^_`{|}~\-]+)*@([A-Za-z0-9]([-A-Za-z0-9(\-)]*[A-Za-z0-9])?\.)+([A-Za-z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum|COM|ORG|NET|EDU|GOV|MIL|BIZ|INFO|MOBI|NAME|AERO|ASIA|JOBS|MUSEUM)"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="emailURI">
+    <annotation>
+      <documentation>Requiere un @</documentation>
+    </annotation>
+    <restriction base="token">
+      <pattern value="[A-Za-z0-9!#&amp;$%'*+/=?^_`{|}~\-]+(\.[A-Za-z0-9!#&amp;$%'*+/=?^_`{|}~\-]+)*@([A-Za-z0-9]([-A-Za-z0-9(\-)]*[A-Za-z0-9])?\.)+([A-Za-z]{2}|es|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum|ES|COM|ORG|NET|EDU|GOV|MIL|BIZ|INFO|MOBI|NAME|AERO|ASIA|JOBS|MUSEUM)"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="sexo">
+    <restriction base="token">
+      <pattern value="F|M"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="legajo">
+    <annotation>
+      <documentation>Legajo del empleado</documentation>
+    </annotation>
+    <restriction base="token">
+      <pattern value="[lL][0-9]{7}"/>
+    </restriction>
+  </simpleType>
+  <complexType name="monto">
+    <simpleContent>
+      <extension base="decimal">
+        <attribute name="listIdMoneda" type="s:alfanumerico" use="optional"/>
+        <attribute name="moneda" type="string" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="montov2">
+    <simpleContent>
+      <extension base="decimal">
+        <attribute name="moneda" type="string" use="optional"/>
+        <attribute name="organizacionIdLista" type="string" use="optional"/>
+        <attribute name="listIdMoneda" type="s:alfanumerico" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="saldo">
+    <sequence>
+      <element name="Valor" type="tns:monto"/>
+      <element name="FechaHora" type="dateTime"/>
+    </sequence>
+  </complexType>
+  <complexType name="saldov2">
+    <sequence>
+      <element name="Valor" type="tns:montov2"/>
+      <element name="FechaHora" type="dateTime"/>
+    </sequence>
+  </complexType>
+  <complexType name="documento">
+    <sequence>
+      <element name="Tipo" type="tns:codigo"/>
+      <element name="Numero" type="tns:id"/>
+      <element name="Emisor" type="s:token3" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="organizacionInterna">
+    <attribute name="tipo" type="string"/>
+    <attribute name="id" type="string"/>
+  </complexType>
+  <complexType name="numeroCuenta">
+    <sequence>
+      <element name="IdPaisBanco" type="s:alfanumerico3">
+        <annotation>
+          <documentation>Argentina es 'AR'</documentation>
+        </annotation>
+      </element>
+      <element name="IdBanco" type="s:alfanumerico15">
+        <annotation>
+          <documentation>Galicia es '90000007'</documentation>
+        </annotation>
+      </element>
+      <element name="Numero" type="s:alfanumerico35">
+        <annotation>
+          <documentation>Para cuentas no SAP: debe ser un numero de 12 digitos donde los primeros 7 representan el folio, el octavo es  digito verificador 1, los 3 subsiguientes corresponden al nro. de sucursal y el ultimo es el digito verificador 2; para cuentas SAP: es un alfanumerico de longitud 12, los primeros 8 caracteres es un identificador que sera generado secuencialmente, los 3 subsiguientes corresponden a un valor fijo que probablemente sera determinado por el tipo de producto y el ultimo es un verificador.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="numeroCuentav2">
+    <sequence>
+      <element name="IdPaisBanco" type="s:alfanumerico3">
+        <annotation>
+          <documentation>Argentina es 'AR'</documentation>
+        </annotation>
+      </element>
+      <element name="IdBanco" type="s:alfanumerico15">
+        <annotation>
+          <documentation>Galicia es '90000007'</documentation>
+        </annotation>
+      </element>
+      <element name="Numero" type="s:alfanumerico35">
+        <annotation>
+          <documentation>Para cuentas no SAP: debe ser un numero de 12 digitos donde los primeros 7 representan el folio, el octavo es  digito verificador 1, los 3 subsiguientes corresponden al nro. de sucursal y el ultimo es el digito verificador 2; para cuentas SAP: es un alfanumerico de longitud 12, los primeros 8 caracteres es un identificador que sera generado secuencialmente, los 3 subsiguientes corresponden a un valor fijo que probablemente sera determinado por el tipo de producto y el ultimo es un verificador.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+    <attribute name="IdBackend" type="string"/>
+  </complexType>
+  <complexType name="telefonoBasico">
+    <sequence>
+      <element name="CodigoPais" type="s:token10" minOccurs="0"/>
+      <element name="CodigoArea" type="s:token10"/>
+      <element name="Numero" type="s:token30"/>
+      <element name="Interno" type="s:token10" minOccurs="0"/>
+    </sequence>
+    <attribute name="celular" type="tns:indicador" use="optional"/>
+  </complexType>
+  <complexType name="telefonoBasicoCodigoDeUso">
+    <sequence>
+      <element name="CodigoDeUso" type="s:alfanumerico_0_2"/>
+      <element name="CodigoPais" type="s:token10" minOccurs="0"/>
+      <element name="CodigoArea" type="s:token10"/>
+      <element name="Numero" type="s:token30"/>
+      <element name="Interno" type="s:token10" minOccurs="0"/>
+    </sequence>
+    <attribute name="celular" type="tns:indicador" use="optional"/>
+  </complexType>
+  <complexType name="domicilioFisico">
+    <sequence>
+      <element name="Calle" type="s:alfanumerico60"/>
+      <element name="NumeroPuerta" type="string"/>
+      <element name="Piso" type="s:token10" minOccurs="0"/>
+      <element name="Departamento" type="s:token10" minOccurs="0"/>
+      <element name="NombreLocalidad" type="s:alfanumerico40"/>
+      <element name="CodigoPostal" type="s:token10"/>
+      <element name="Barrio" type="s:alfanumerico30" minOccurs="0"/>
+      <element name="Partido" type="s:alfanumerico30" minOccurs="0"/>
+      <element name="CodigoProvincia" type="s:token6" minOccurs="0"/>
+      <element name="CodigoPais" type="s:token3" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="domicilio2">
+    <sequence>
+      <element name="CodigoUsoPersona" type="s:alfanumerico2"/>
+      <element name="Calle" type="s:alfanumerico50"/>
+      <element name="CalleAbreviada" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="NumeroPuerta" type="s:alfanumerico6"/>
+      <element name="Piso" type="s:alfanumerico6" minOccurs="0"/>
+      <element name="Departamento" type="s:alfanumerico6" minOccurs="0"/>
+      <element name="Complemento" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EntreCalle1" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EntreCalle2" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="CodigoPostal" type="s:numeric4" minOccurs="0"/>
+      <element name="CPA" type="s:alfanumerico_0_8" minOccurs="0"/>
+      <element name="NombrePartido" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="NombreLocalidad" type="s:alfanumerico30"/>
+      <element name="CodigoProvincia" type="tns:codigo"/>
+      <element name="DescripcionProvincia" type="s:alfanumerico_0_20" minOccurs="0"/>
+      <element name="CodigoPais" type="tns:codigo"/>
+      <element name="DescripcionPais" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EstadoGeoReferenciacion" type="s:alfanumerico_0_2" minOccurs="0"/>
+      <element name="Latitud" type="s:alfanumerico_0_11" minOccurs="0"/>
+      <element name="Longitud" type="s:alfanumerico_0_11" minOccurs="0"/>
+      <element name="SolicitoVerificacionDomicilio" type="tns:indicador" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <!--01/11/2011 se crea este "domicilio2salida" para que las consultas de los datos de domicilios de NV puedan mostrar tags vacíos, aunque sean obligatorios-->
+  <complexType name="domicilio2salida">
+    <sequence>
+      <element name="CodigoUsoPersona" type="s:alfanumerico_0_2"/>
+      <element name="Calle" type="s:alfanumerico_0_50"/>
+      <element name="CalleAbreviada" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="NumeroPuerta" type="s:alfanumerico_0_6"/>
+      <element name="Piso" type="s:alfanumerico_0_6" minOccurs="0"/>
+      <element name="Departamento" type="s:alfanumerico_0_6" minOccurs="0"/>
+      <element name="Complemento" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EntreCalle1" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EntreCalle2" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="CodigoPostal" type="s:numeric4" minOccurs="0"/>
+      <element name="CPA" type="s:alfanumerico_0_8" minOccurs="0"/>
+      <element name="NombrePartido" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="NombreLocalidad" type="s:alfanumerico_0_30"/>
+      <element name="CodigoProvincia" type="string"/>
+      <element name="DescripcionProvincia" type="s:alfanumerico_0_20" minOccurs="0"/>
+      <element name="CodigoPais" type="string"/>
+      <element name="DescripcionPais" type="s:alfanumerico_0_30" minOccurs="0"/>
+      <element name="EstadoGeoReferenciacion" type="s:alfanumerico_0_2" minOccurs="0"/>
+      <element name="Latitud" type="s:alfanumerico_0_11" minOccurs="0"/>
+      <element name="Longitud" type="s:alfanumerico_0_11" minOccurs="0"/>
+      <element name="SolicitoVerificacionDomicilio" type="tns:indicador" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="numeroCBU">
+    <annotation>
+      <documentation>Banco + Sucursal + Digito Verificador + Codigo Cta.+ Digito Verificador</documentation>
+    </annotation>
+    <restriction base="token">
+      <maxLength value="22"/>
+      <minLength value="22"/>
+    </restriction>
+  </simpleType>
+  <complexType name="idProductoBT">
+    <sequence>
+      <element name="CodigoSubsistemaBT" type="s:numeric2"/>
+      <element name="NumeroCuenta" type="tns:numeroCuenta"/>
+    </sequence>
+  </complexType>
+  <complexType name="idProductoNV">
+    <sequence>
+      <element name="CodigoSubsistema" type="s:numeric5"/>
+      <element name="NumeroCuenta" type="s:alfanumerico25"/>
+    </sequence>
+  </complexType>
+  <complexType name="idProductoNV2">
+    <sequence>
+      <element name="CodigoSubsistema" type="s:numeric5"/>
+      <element name="CodigoMoneda" type="s:numeric2"/>
+      <element name="NumeroCuenta">
+        <complexType>
+          <simpleContent>
+            <extension base="s:alfanumerico25">
+              <attribute name="IdBackend" type="string"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="idCuentaTarjetas">
+    <sequence>
+      <element name="CodigoMarca" type="s:numeric3"/>
+      <element name="NumeroCuentaCredito" type="s:numeric10"/>
+    </sequence>
+  </complexType>
+  <complexType name="idCuentaPasivas">
+    <sequence>
+      <element name="CodigoSubsistema" type="s:numeric2"/>
+      <element name="CodigoMoneda" type="s:numeric2"/>
+      <element name="NumeroCuenta" type="tns:numeroCuenta"/>
+    </sequence>
+  </complexType>
+  <complexType name="idCuenta">
+    <sequence>
+      <element name="CodigoSubsistema" type="s:numeric2"/>
+      <element name="CodigoMoneda" type="s:numeric2"/>
+      <element name="NumeroCuenta" type="tns:numeroCuentav2"/>
+    </sequence>
+  </complexType>
+  <complexType name="idCuenta2">
+    <sequence>
+      <element name="CodigoSubsistema" type="tns:codigo"/>
+      <element name="CodigoMoneda" type="tns:codigo"/>
+      <element name="NumeroCuenta" type="tns:numeroCuentav2"/>
+    </sequence>
+  </complexType>
+  <element name="IdCuentaPasivas" type="tns:idCuentaPasivas"/>
+  <element name="IdCuenta" type="tns:idCuenta"/>
+  <element name="IdCuenta2" type="tns:idCuenta2"/>
+  <element name="IdCuentaTarjetas" type="tns:idCuentaTarjetas"/>
+  <element name="IdProductoNV" type="tns:idProductoNV"/>
+  <element name="IdProductoNV2" type="tns:idProductoNV2"/>
+  <element name="IdProductoBT" type="tns:idProductoBT"/>
+  <element name="ClaseProductoNV">
+    <complexType>
+      <sequence>
+        <element name="CodigoSubsistema" type="s:numeric5"/>
+        <element name="CodigoProducto" type="s:alfanumerico2" minOccurs="0"/>
+        <element name="CodigoSubproducto" type="s:alfanumerico2" minOccurs="0"/>
+        <element name="CodigoModificador" type="s:alfanumerico3"/>
+        <element name="CodigoSector" type="s:alfanumerico1" minOccurs="0"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ClaseProductoCatalogo">
+    <complexType>
+      <sequence>
+        <element name="CodigoProducto" type="s:numeric9"/>
+        <element name="CodigoComponente" type="s:numeric9"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

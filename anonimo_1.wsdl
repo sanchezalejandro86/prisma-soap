@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions name="ConsultaResumenTarjeta" targetNamespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" xmlns:WL5G3N2="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" xmlns:WL5G3N3="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:WL5G3N4="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:WL5G3N5="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:ro="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" xmlns:xsd2="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0">
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" schemaLocation="anonimo.xsd"/>
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" schemaLocation="anonimo_1.xsd"/>
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" schemaLocation="anonimo_1_2_3_4_5.xsd"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="ObtenerResumenRequest">
+    <WL5G3N0:part element="WL5G3N1:ObtenerResumen" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="ObtenerResumenResponse">
+    <WL5G3N0:part element="WL5G3N2:ObtenerResumenResult" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="BGBAResultadoOperacionFalla">
+    <WL5G3N0:documentation/>
+    <WL5G3N0:part element="WL5G3N3:BGBAResultadoOperacionFalla" name="BGBAResultadoOperacionFalla"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="ConsultaResumenTarjeta">
+    <WL5G3N0:operation name="ObtenerResumen">
+      <WL5G3N0:input message="WL5G3N4:ObtenerResumenRequest"/>
+      <WL5G3N0:output message="WL5G3N4:ObtenerResumenResponse"/>
+      <WL5G3N0:fault message="WL5G3N4:BGBAResultadoOperacionFalla" name="BGBAResultadoOperacionFalla"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="ConsultaResumenTarjeta" type="WL5G3N4:ConsultaResumenTarjeta">
+    <WL5G3N5:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="ObtenerResumen">
+      <WL5G3N5:operation soapAction="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumen"/>
+      <WL5G3N0:input>
+        <WL5G3N5:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N5:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="BGBAResultadoOperacionFalla">
+        <WL5G3N5:fault name="BGBAResultadoOperacionFalla" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="ConsultaResumenTarjeta">
+    <WL5G3N0:port binding="WL5G3N4:ConsultaResumenTarjeta" name="ConsultaResumenTarjeta">
+      <WL5G3N5:address location="http://desaosb:8003/consultaresumentarjeta/anonimo"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

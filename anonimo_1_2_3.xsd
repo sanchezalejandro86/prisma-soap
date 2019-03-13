@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by oscarlin (Wachovia Bank)--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <simpleType name="empty">
+    <restriction base="boolean"/>
+  </simpleType>
+  <simpleType name="boolean2">
+    <restriction base="string">
+      <pattern value="true|false"/>
+    </restriction>
+  </simpleType>
+  <!--domicilioFisico que admite "vacios"-->
+  <complexType name="domicilioFisicoConVacios">
+    <sequence>
+      <element name="Calle" type="tns:alfanumerico_0_60"/>
+      <element name="NumeroPuerta" type="string"/>
+      <element name="Piso" type="tns:alfanumerico_0_10" minOccurs="0"/>
+      <element name="Departamento" type="tns:alfanumerico_0_10" minOccurs="0"/>
+      <element name="NombreLocalidad" type="tns:alfanumerico_0_40"/>
+      <element name="CodigoPostal" type="tns:alfanumerico_0_10"/>
+      <element name="Barrio" type="tns:alfanumerico_0_30" minOccurs="0"/>
+      <element name="Partido" type="tns:alfanumerico_0_30" minOccurs="0"/>
+      <element name="CodigoProvincia" type="tns:alfanumerico_0_6" minOccurs="0"/>
+      <element name="CodigoPais" type="tns:alfanumerico_0_3" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <!--monto-->
+  <complexType name="monto9_7">
+    <simpleContent>
+      <extension base="tns:decimal9_7">
+        <attribute name="listIdMoneda" type="string" use="optional" default="NV">
+          <annotation>
+            <documentation>indica el conjunto de codigos de monedas en uso, por ejemplo 'NV' o 'BCRA'; por default es 'NV'</documentation>
+          </annotation>
+        </attribute>
+        <attribute name="moneda" type="string" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="monto9_8">
+    <simpleContent>
+      <extension base="tns:decimal9_8">
+        <attribute name="listIdMoneda" type="string" use="optional" default="NV">
+          <annotation>
+            <documentation>indica el conjunto de codigos de monedas en uso, por ejemplo 'NV' o 'BCRA'; por default es 'NV'</documentation>
+          </annotation>
+        </attribute>
+        <attribute name="moneda" type="string" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="monto16_2">
+    <simpleContent>
+      <extension base="tns:decimal16_2">
+        <attribute name="listIdMoneda" type="string" use="optional" default="NV">
+          <annotation>
+            <documentation>indica el conjunto de codigos de monedas en uso, por ejemplo 'NV' o 'BCRA'; por default es 'NV'</documentation>
+          </annotation>
+        </attribute>
+        <attribute name="moneda" type="string" use="optional"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <!--numericos-->
+  <simpleType name="numericohost9">
+    <restriction base="string">
+      <pattern value="[0-9]{9,9}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numericohost10">
+    <restriction base="string">
+      <pattern value="[0-9]{10,10}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric1positivo">
+    <restriction base="int">
+      <minInclusive value="1"/>
+      <maxInclusive value="9"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric2positivo">
+    <restriction base="int">
+      <minInclusive value="1"/>
+      <maxInclusive value="99"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric3positivo">
+    <restriction base="int">
+      <minInclusive value="1"/>
+      <maxInclusive value="999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric4positivo">
+    <restriction base="int">
+      <minInclusive value="1"/>
+      <maxInclusive value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric9positivo">
+    <restriction base="int">
+      <minInclusive value="1"/>
+      <maxInclusive value="999999999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric10positivo">
+    <restriction base="decimal">
+      <minInclusive value="1"/>
+      <maxInclusive value="9999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric11positivo">
+    <restriction base="unsignedLong">
+      <minInclusive value="1"/>
+      <maxInclusive value="99999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric1">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="9"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric2">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="99"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric3">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric4">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric5">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric6">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric7">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric8">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric9">
+    <restriction base="int">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric10">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric11">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric12">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric15">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric16">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999999999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="numeric18">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999999999999"/>
+      <fractionDigits value="0"/>
+    </restriction>
+  </simpleType>
+  <!--decimal-->
+  <simpleType name="decimal3_3">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999.999"/>
+      <fractionDigits value="3"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal3_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal3_6">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999.999999"/>
+      <fractionDigits value="6"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal4_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal5_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal8_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal9_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal9_7">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999.9999999"/>
+      <fractionDigits value="7"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal9_8">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999.99999999"/>
+      <fractionDigits value="8"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal11_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal11_4">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999999.9999"/>
+      <fractionDigits value="4"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal13_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal14_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="99999999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal15_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="999999999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimal16_2">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+      <maxInclusive value="9999999999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimalSigno3_8">
+    <restriction base="decimal">
+      <minInclusive value="-999.99999999"/>
+      <maxInclusive value="999.99999999"/>
+      <fractionDigits value="8"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimalSigno5_4">
+    <restriction base="decimal">
+      <minInclusive value="-99999.9999"/>
+      <maxInclusive value="99999.9999"/>
+      <fractionDigits value="4"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimalSigno10_7">
+    <restriction base="decimal">
+      <minInclusive value="-9999999999.9999999"/>
+      <maxInclusive value="9999999999.9999999"/>
+      <fractionDigits value="7"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimalSigno11_2">
+    <restriction base="decimal">
+      <minInclusive value="-99999999999.99"/>
+      <maxInclusive value="99999999999.99"/>
+      <fractionDigits value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="decimalSinSigno">
+    <restriction base="decimal">
+      <minInclusive value="0"/>
+    </restriction>
+  </simpleType>
+  <!--ALFANUMERICOS QUE PERMITEN VACIO-->
+  <simpleType name="alfanumerico_0_1">
+    <restriction base="string">
+      <maxLength value="1"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_2">
+    <restriction base="string">
+      <maxLength value="2"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_3">
+    <restriction base="string">
+      <maxLength value="3"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_4">
+    <restriction base="string">
+      <maxLength value="4"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_5">
+    <restriction base="string">
+      <maxLength value="5"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_6">
+    <restriction base="string">
+      <maxLength value="6"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_7">
+    <restriction base="string">
+      <maxLength value="7"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_8">
+    <restriction base="string">
+      <maxLength value="8"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_9">
+    <restriction base="string">
+      <maxLength value="9"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_10">
+    <restriction base="string">
+      <maxLength value="10"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_11">
+    <restriction base="string">
+      <maxLength value="11"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_12">
+    <restriction base="string">
+      <maxLength value="12"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_14">
+    <restriction base="string">
+      <maxLength value="14"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_15">
+    <restriction base="string">
+      <maxLength value="15"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_16">
+    <restriction base="string">
+      <maxLength value="16"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_17">
+    <restriction base="string">
+      <maxLength value="17"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_19">
+    <restriction base="string">
+      <maxLength value="19"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_20">
+    <restriction base="string">
+      <maxLength value="20"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_22">
+    <restriction base="string">
+      <maxLength value="22"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_25">
+    <restriction base="string">
+      <maxLength value="25"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_26">
+    <restriction base="string">
+      <maxLength value="26"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_30">
+    <restriction base="string">
+      <maxLength value="30"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_32">
+    <restriction base="string">
+      <maxLength value="32"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_35">
+    <restriction base="string">
+      <maxLength value="35"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_40">
+    <restriction base="string">
+      <maxLength value="40"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_42">
+    <restriction base="string">
+      <maxLength value="42"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_45">
+    <restriction base="string">
+      <maxLength value="45"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_50">
+    <restriction base="string">
+      <maxLength value="50"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_60">
+    <restriction base="string">
+      <maxLength value="60"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_80">
+    <restriction base="string">
+      <maxLength value="80"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_90">
+    <restriction base="string">
+      <maxLength value="90"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_100">
+    <restriction base="string">
+      <maxLength value="100"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_200">
+    <restriction base="string">
+      <maxLength value="200"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico_0_820">
+    <restriction base="string">
+      <maxLength value="820"/>
+      <minLength value="0"/>
+    </restriction>
+  </simpleType>
+  <!--ALFANUMERICOS-->
+  <simpleType name="alfanumerico">
+    <restriction base="string">
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico1">
+    <restriction base="string">
+      <maxLength value="1"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico2">
+    <restriction base="string">
+      <maxLength value="2"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico3">
+    <restriction base="string">
+      <maxLength value="3"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumericoLE3">
+    <restriction base="string">
+      <maxLength value="3"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico4">
+    <restriction base="string">
+      <maxLength value="4"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico5">
+    <restriction base="string">
+      <maxLength value="5"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico6">
+    <restriction base="string">
+      <maxLength value="6"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico7">
+    <restriction base="string">
+      <maxLength value="7"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico8">
+    <restriction base="string">
+      <maxLength value="8"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico9">
+    <restriction base="string">
+      <maxLength value="9"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico10">
+    <restriction base="string">
+      <maxLength value="10"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico11">
+    <restriction base="string">
+      <maxLength value="11"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico12">
+    <restriction base="string">
+      <maxLength value="12"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico14">
+    <restriction base="string">
+      <maxLength value="14"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico15">
+    <restriction base="string">
+      <maxLength value="15"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumericoLE15">
+    <restriction base="string">
+      <maxLength value="15"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico16">
+    <restriction base="string">
+      <maxLength value="16"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico17">
+    <restriction base="string">
+      <maxLength value="17"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico19">
+    <restriction base="string">
+      <maxLength value="19"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico20">
+    <restriction base="string">
+      <maxLength value="20"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico22">
+    <restriction base="string">
+      <maxLength value="22"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico25">
+    <restriction base="string">
+      <maxLength value="25"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico26">
+    <restriction base="string">
+      <maxLength value="26"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico30">
+    <restriction base="string">
+      <maxLength value="30"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico32">
+    <restriction base="string">
+      <maxLength value="32"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico35">
+    <restriction base="string">
+      <maxLength value="35"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumericoLE35">
+    <restriction base="string">
+      <maxLength value="35"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico40">
+    <restriction base="string">
+      <maxLength value="40"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico42">
+    <restriction base="string">
+      <maxLength value="42"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico45">
+    <restriction base="string">
+      <maxLength value="45"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico50">
+    <restriction base="string">
+      <maxLength value="50"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico60">
+    <restriction base="string">
+      <maxLength value="60"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico80">
+    <restriction base="string">
+      <maxLength value="80"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico90">
+    <restriction base="string">
+      <maxLength value="90"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico100">
+    <restriction base="string">
+      <maxLength value="100"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alfanumerico820">
+    <restriction base="string">
+      <maxLength value="820"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <!--ALFANUMERICO CON RESTRICCION 11_11-->
+  <simpleType name="alfanumerico_11_11">
+    <restriction base="string">
+      <maxLength value="11"/>
+      <minLength value="11"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token1">
+    <restriction base="token">
+      <maxLength value="1"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token2">
+    <restriction base="token">
+      <minLength value="1"/>
+      <maxLength value="2"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token3">
+    <restriction base="token">
+      <maxLength value="3"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token5">
+    <restriction base="token">
+      <maxLength value="5"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token6">
+    <restriction base="token">
+      <maxLength value="6"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token8">
+    <restriction base="token">
+      <maxLength value="8"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token10">
+    <restriction base="token">
+      <maxLength value="10"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token20">
+    <restriction base="token">
+      <maxLength value="20"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token30">
+    <restriction base="token">
+      <maxLength value="30"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token60">
+    <restriction base="token">
+      <maxLength value="60"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="token90">
+    <restriction base="token">
+      <maxLength value="90"/>
+      <minLength value="1"/>
+    </restriction>
+  </simpleType>
+</schema>

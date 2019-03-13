@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0">
+  <simpleType name="severidad">
+    <restriction base="string">
+      <enumeration value="OK"/>
+      <enumeration value="INFO"/>
+      <enumeration value="WARNING"/>
+      <enumeration value="ERROR"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="severidad2">
+    <restriction base="string">
+      <enumeration value="INFO"/>
+      <enumeration value="WARNING"/>
+      <enumeration value="ERROR"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="alphanumericLE32">
+    <restriction base="string">
+      <maxLength value="32"/>
+    </restriction>
+  </simpleType>
+  <element name="BGBAResultadoOperacion">
+    <complexType>
+      <sequence>
+        <element name="Severidad" type="tns:severidad">
+          <annotation>
+            <documentation>Categorización del resultado de la ejecución de la operación. Corresponde con alguno de los valores definidos: OK: Se realizó correctamente.
+INFO: Se realizó la operación correctamente y hay información sobre la misma.
+WARNING: Se realizó la operación correctamente y hay avisos que podría ser necesario mostrar, procesar o loguear.
+ERROR: No se realizó la operación y hay información acerca del error.
+ABORT: En caso de no poder generar SOAPExceptions deberá completarse con este nivel de error. El BUS lo convertirá en una SOAPException.</documentation>
+          </annotation>
+        </element>
+        <element name="Codigo" type="string" minOccurs="0">
+          <annotation>
+            <documentation>Código del resultado de la ejecución de la operación invocada. Es propio del proveedor</documentation>
+          </annotation>
+        </element>
+        <element name="Descripcion" type="string" minOccurs="0">
+          <annotation>
+            <documentation>Descripción del resultado de la ejecución de la operación invocada</documentation>
+          </annotation>
+        </element>
+        <element name="Tipo" type="string" minOccurs="0">
+          <annotation>
+            <documentation>Agrupación de códigos de mensajes definida por el proveedor</documentation>
+          </annotation>
+        </element>
+        <element name="URLDetalle" type="string" minOccurs="0">
+          <annotation>
+            <documentation>URL de algún recurso que provee mayor detalle acerca del código retornado</documentation>
+          </annotation>
+        </element>
+        <element name="IdRespuesta" minOccurs="0">
+          <annotation>
+            <documentation>Identificador de la respuesta generada por el proveedor</documentation>
+          </annotation>
+          <complexType>
+            <simpleContent>
+              <extension base="string">
+                <attribute name="nombreProveedor" type="string" use="required">
+                  <annotation>
+                    <documentation>Nombre del proveedor que generó el Identificador. Por ejemplo 'PASIVAS'</documentation>
+                  </annotation>
+                </attribute>
+              </extension>
+            </simpleContent>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="BGBAResultadoOperacionLog">
+    <complexType>
+      <sequence>
+        <element name="LogItem" minOccurs="0" maxOccurs="unbounded">
+          <annotation>
+            <documentation>Item de Log con información atómica de la ejecución de la operación</documentation>
+          </annotation>
+          <complexType>
+            <sequence>
+              <element name="Severidad" type="tns:severidad2">
+                <annotation>
+                  <documentation>Resultado de la ejecución atómica de la operación. Corresponde con alguno de los valores definidos (ver la sección “Valores de Severidad”): INFO, WARNING,
+ERROR,
+ABORT.</documentation>
+                </annotation>
+              </element>
+              <element name="Codigo" type="string">
+                <annotation>
+                  <documentation>Código de resultado de la ejecución atómica de la operación</documentation>
+                </annotation>
+              </element>
+              <element name="Descripcion" type="string">
+                <annotation>
+                  <documentation>Descripción de resultado de la ejecución atómica de la operación</documentation>
+                </annotation>
+              </element>
+              <element name="Tipo" type="string" minOccurs="0">
+                <annotation>
+                  <documentation>Agrupación de códigos de mensajes definida por el proveedor</documentation>
+                </annotation>
+              </element>
+              <element name="URLDetalle" type="string" minOccurs="0">
+                <annotation>
+                  <documentation>URL de algún recurso que provee mayor detalle del código retornado</documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="BGBAResultadoOperacionFalla">
+    <complexType>
+      <sequence>
+        <element ref="tns:BGBAResultadoOperacion"/>
+        <element ref="tns:BGBAResultadoOperacionLog"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

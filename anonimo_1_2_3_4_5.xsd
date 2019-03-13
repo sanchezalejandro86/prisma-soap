@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by L0602256 (EMBRACE)--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:b="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" xmlns:s="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0">
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" schemaLocation="anonimo.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="anonimo_1_2_3.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" schemaLocation="anonimo_1_2_3_4.xsd"/>
+  <element name="ObtenerResumenResponse">
+    <complexType>
+      <sequence>
+        <element ref="h:BGBAResultadoOperacion"/>
+        <element name="Datos" minOccurs="0">
+          <complexType>
+            <sequence>
+              <element name="Documento">
+                <complexType>
+                  <sequence>
+                    <element name="Datos" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="CodigoAfinidad" type="string" minOccurs="0"/>
+                          <element name="Apellido" type="string" minOccurs="0"/>
+                          <element name="CodigoCategoria" type="b:codigov2" minOccurs="0"/>
+                          <element name="CodigoTipoTarjeta" type="b:codigov2" minOccurs="0"/>
+                          <element name="CodigoSucursal" type="int" minOccurs="0"/>
+                          <element name="Cuenta" type="b:codigov2" minOccurs="0"/>
+                          <element name="FechaDesde" type="date" minOccurs="0"/>
+                          <element name="FechaNacimiento" type="date" minOccurs="0"/>
+                          <element name="Habiente" type="string" minOccurs="0"/>
+                          <element name="Nombre" type="string" minOccurs="0"/>
+                          <element name="Documento" type="int" minOccurs="0"/>
+                          <element name="Producto" type="string" minOccurs="0"/>
+                          <element name="TarjetaActiva" type="string" minOccurs="0"/>
+                          <element name="TarjetaProdu" type="string" minOccurs="0"/>
+                          <element name="Telefono" type="string" minOccurs="0"/>
+                          <element name="TipoDocumento" minOccurs="0">
+                            <complexType>
+                              <simpleContent>
+                                <extension base="string">
+                                  <attribute name="Codigo" type="string"/>
+                                </extension>
+                              </simpleContent>
+                            </complexType>
+                          </element>
+                          <element name="TipoTarjetaDetalle" type="string" minOccurs="0"/>
+                          <element name="Titular" type="string" minOccurs="0"/>
+                          <element name="Vencimiento" type="int" minOccurs="0"/>
+                          <element name="Website" type="string" minOccurs="0"/>
+                          <element name="Email" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Nombre" type="string" minOccurs="0"/>
+                                <element name="Dominio" type="string" minOccurs="0"/>
+                              </sequence>
+                              <attribute name="Descripcion" type="string"/>
+                            </complexType>
+                          </element>
+                        </sequence>
+                        <attribute name="Id" type="string"/>
+                      </complexType>
+                    </element>
+                    <element name="SaldoEnCuenta" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="Fechas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Fecha" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Cierre" type="date" minOccurs="0"/>
+                                      <element name="Vencimiento" type="date" minOccurs="0"/>
+                                    </sequence>
+                                    <attribute name="Descripcion" type="string"/>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="Pagos" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Pago" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Pesos" type="decimal" minOccurs="0"/>
+                                      <element name="Dolares" type="decimal" minOccurs="0"/>
+                                    </sequence>
+                                    <attribute name="Descripcion" type="string"/>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="Limites" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Limite" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Pesos" type="decimal" minOccurs="0"/>
+                                    </sequence>
+                                    <attribute name="Descripcion" type="string"/>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="Saldos" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Saldo" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Pesos" type="decimal" minOccurs="0"/>
+                                      <element name="Dolares" type="decimal" minOccurs="0"/>
+                                    </sequence>
+                                    <attribute name="Descripcion" type="string"/>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="Tasas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="Tasa" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Pesos" type="decimal" minOccurs="0"/>
+                                      <element name="Dolares" type="decimal" minOccurs="0"/>
+                                    </sequence>
+                                    <attribute name="Descripcion" type="string"/>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                        <attribute name="LimitesUnificados" type="string"/>
+                      </complexType>
+                    </element>
+                  </sequence>
+                  <attribute name="SessionId" type="string"/>
+                </complexType>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+        <element ref="h:BGBAResultadoOperacionLog"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ObtenerResumenResult">
+    <complexType>
+      <sequence>
+        <element ref="tns:ObtenerResumenResponse"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>
