@@ -2,9 +2,9 @@
 <WL5G3N0:definitions name="ConsultaResumenTarjeta" targetNamespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" xmlns:WL5G3N2="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" xmlns:WL5G3N3="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:WL5G3N4="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:WL5G3N5="http://schemas.xmlsoap.org/wsdl/soap/">
   <WL5G3N0:types>
     <xsd:schema xmlns:ro="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/1_0_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" xmlns:xsd2="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0">
-      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" schemaLocation="anonimo.xsd"/>
-      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" schemaLocation="anonimo_1.xsd"/>
-      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" schemaLocation="anonimo_1_2_3_4_5.xsd"/>
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" schemaLocation="https://raw.githubusercontent.com/sanchezalejandro86/prisma-soap/master/anonimo.xsd"/>
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenrequest/1_0_0" schemaLocation="https://raw.githubusercontent.com/sanchezalejandro86/prisma-soap/master/anonimo_1.xsd"/>
+      <xsd:import namespace="http://ws.bancogalicia.com.ar/webservices/consultaresumentarjeta/obtenerresumenresponse/1_0_0" schemaLocation="https://raw.githubusercontent.com/sanchezalejandro86/prisma-soap/master/anonimo_1_2_3_4_5.xsd"/>
     </xsd:schema>
   </WL5G3N0:types>
   <WL5G3N0:message name="ObtenerResumenRequest">

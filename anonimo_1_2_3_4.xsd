@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg)--><!--2009/03/03 BUG Se arregló el pattern de aceptacion de mail.--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" xmlns:s="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="anonimo_1_2_3.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="https://raw.githubusercontent.com/sanchezalejandro86/prisma-soap/master/anonimo_1_2_3.xsd"/>
   <simpleType name="indicador">
     <restriction base="s:boolean2"/>
   </simpleType>
